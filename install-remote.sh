@@ -24,7 +24,7 @@ cd "$TEMP_DIR"
 
 # Download the repository
 echo "Downloading Panthra CLI..."
-curl -sL https://github.com/Panthra-ai/panthra-shell-client/archive/main.tar.gz | tar xz --strip-components=1
+curl -sL https://codeload.github.com/Panthra-ai/panthra-shell-client/tar.gz/main | tar xz --strip-components=1
 
 # Check if running as root
 if [ "$EUID" -ne 0 ]; then
