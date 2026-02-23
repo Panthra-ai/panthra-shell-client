@@ -8,12 +8,41 @@ Professional shell client for the Panthra trading API.
 ```bash
 curl -sSL https://raw.githubusercontent.com/Panthra-ai/panthra-shell-client/main/install-remote.sh | bash
 ```
+*Installs to ~/.local/bin and updates your shell configuration*
 
 ### Option 2: Git Clone
 ```bash
 git clone https://github.com/Panthra-ai/panthra-shell-client.git
 cd panthra-shell-client
 ./install.sh
+```
+
+## Post-Installation
+
+After installation, run one of the following commands to make `panthra` available:
+
+```bash
+# For immediate use (recommended)
+source ~/.zshrc
+
+# Or restart your terminal
+```
+
+## Installation Details
+
+### File Location
+- **Files stored in**: `~/.local/bin/` and `~/.local/bin/lib/`
+- **Shell configuration**: Automatically updated in `~/.zshrc` or `~/.bashrc`
+- **PATH requirement**: Run `source ~/.zshrc` or restart terminal after installation
+
+### Verification
+```bash
+# Verify installation
+source ~/.zshrc
+panthra --version
+
+# Check installation location
+which panthra
 ```
 
 ## Configure Credentials

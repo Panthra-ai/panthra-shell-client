@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Panthra CLI Remote Installation Script
-# Downloads and installs the Panthra CLI without requiring git
+# Downloads and installs the Panthra CLI
 
 set -e
 
@@ -10,11 +10,6 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
-
-# Configuration
-REPO_URL="https://github.com/Panthra-ai/panthra-shell-client.git"
-BRANCH="main"
-INSTALL_DIR="/usr/local/bin"
 
 echo -e "${GREEN}Installing Panthra CLI...${NC}"
 
@@ -26,54 +21,49 @@ cd "$TEMP_DIR"
 echo "Downloading Panthra CLI..."
 curl -sL https://codeload.github.com/Panthra-ai/panthra-shell-client/tar.gz/main | tar xz --strip-components=1
 
-# Check if running as root
-if [ "$EUID" -eq 0 ]; then
-    INSTALL_DIR="/usr/local/bin"
-else
-    # Try directories that are already in PATH and writable
-    for dir in "/opt/homebrew/bin" "/usr/local/bin"; do
-        if [ -w "$dir" ]; then
-            INSTALL_DIR="$dir"
-            echo -e "${GREEN}Installing to $dir (already in PATH)${NC}"
-            break
-        fi
-    done
+# Install to ~/.local/bin
+INSTALL_DIR="$HOME/.local/bin"
+mkdir -p "$INSTALL_DIR"
+echo -e "${GREEN}Installing to $INSTALL_DIR${NC}"
+
+# Copy files
+cp -r bin/* "$INSTALL_DIR/"
+cp -r lib "$INSTALL_DIR/"
+
+# Fix the LIB_DIR path in the main script
+sed -i '' '2i\
+# Set INSTALL_DIR for this script\
+INSTALL_DIR="'"$INSTALL_DIR"'"' "$INSTALL_DIR/panthra"
+sed -i '' 's|LIB_DIR="$SCRIPT_DIR/../lib"|LIB_DIR="$INSTALL_DIR/lib"|g' "$INSTALL_DIR/panthra"
+
+# Update PATH in shell config files
+update_shell_config() {
+    local shell_config=""
     
-    # If no writable directory found, fallback to ~/.local/bin
-    if [ -z "$INSTALL_DIR" ]; then
-        echo -e "${YELLOW}No writable directory in PATH. Installing to ~/.local/bin${NC}"
-        INSTALL_DIR="$HOME/.local/bin"
-        mkdir -p "$INSTALL_DIR"
-        
-        # Add to PATH if not already there
-        if ! echo "$PATH" | grep -q "$INSTALL_DIR"; then
-            echo "export PATH=\"\$PATH:$INSTALL_DIR\"" >> "$HOME/.bashrc"
-            echo -e "${YELLOW}Added $INSTALL_DIR to PATH in ~/.bashrc${NC}"
-            echo -e "${YELLOW}Run 'source ~/.bashrc' or restart your terminal to use the command${NC}"
-        fi
+    # Detect shell and config file
+    if [ -n "$ZSH_VERSION" ] || [ -f "$HOME/.zshrc" ]; then
+        shell_config="$HOME/.zshrc"
+    elif [ -n "$BASH_VERSION" ] || [ -f "$HOME/.bashrc" ]; then
+        shell_config="$HOME/.bashrc"
+    else
+        shell_config="$HOME/.profile"
     fi
-fi
+    
+    # Add PATH if not already there
+    if ! grep -q "export PATH.*$INSTALL_DIR" "$shell_config" 2>/dev/null; then
+        echo "" >> "$shell_config"
+        echo "# Panthra CLI" >> "$shell_config"
+        echo "export PATH=\"$INSTALL_DIR:\$PATH\"" >> "$shell_config"
+        echo -e "${YELLOW}Added PATH to $shell_config${NC}"
+        echo -e "${YELLOW}Run 'source $shell_config' or restart your terminal to apply the changes${NC}"
+    fi
+}
 
-# Create symlink
-if [ -L "$INSTALL_DIR/panthra" ]; then
-    echo -e "${YELLOW}Removing existing symlink...${NC}"
-    rm "$INSTALL_DIR/panthra"
-fi
+# Update shell config files
+update_shell_config
 
-# Copy files instead of creating symlink to temp directory
-mkdir -p "$HOME/.panthra-cli"
-cp -r "$TEMP_DIR"/* "$HOME/.panthra-cli/"
-
-# Create a wrapper script that updates PATH
-cat > "$INSTALL_DIR/panthra" << 'EOF'
-#!/bin/bash
-# Update PATH for this session
-export PATH="$HOME/.panthra-cli/bin:$PATH"
-# Execute the real panthra
-exec "$HOME/.panthra-cli/bin/panthra" "$@"
-EOF
-
-chmod +x "$INSTALL_DIR/panthra"
+# Update PATH for current session
+export PATH="$INSTALL_DIR:$PATH"
 
 # Cleanup
 cd /
@@ -82,9 +72,6 @@ rm -rf "$TEMP_DIR"
 echo -e "${GREEN}✓ Panthra CLI installed successfully!${NC}"
 echo -e "${GREEN}✓ Command available as: panthra${NC}"
 echo ""
-echo "Testing installation..."
-panthra --version
-echo ""
-echo "Next steps:"
+echo "Restart your terminal and run:"
 echo "  panthra configure"
 echo "  panthra orders list"
