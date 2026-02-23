@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Panthra CLI Wrapper
+# This wrapper sets the correct path and calls the main script
+
+# Get the real directory where this script is located (follow symlinks)
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+exec "$SCRIPT_DIR/bin/panthra" "$@"

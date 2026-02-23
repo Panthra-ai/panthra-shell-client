@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# Panthra CLI - Main entry point
+# This script loads the modular components and routes commands
+
+set -e
+set -o nounset
+
+# Get script directory (absolute path)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LIB_DIR="$SCRIPT_DIR/../lib"
+
+# If running via symlink, resolve the real path
+if [ -L "${BASH_SOURCE[0]}" ]; then
+    REAL_SCRIPT_DIR="$(cd "$(dirname "$(readlink "${BASH_SOURCE[0]}")")" && pwd)"
+    LIB_DIR="$REAL_SCRIPT_DIR/../lib"
+fi
+
+# Source all library modules
+source "$LIB_DIR/panthra-config.sh"
+source "$LIB_DIR/panthra-client.sh"
+source "$LIB_DIR/panthra-cli.sh"
+source "$LIB_DIR/panthra-format.sh"
+
+# Main entry point
+main() {
+    if [ $# -eq 0 ]; then
+        show_help
+        return 1
+    fi
+    
+    # Handle global options first
+    case "$1" in
+        "--version"|"-v")
+            show_version
+            return 0
+            ;;
+        "--help"|"-h")
+            show_help
+            return 0
+            ;;
+    esac
+    
+    local command="$1"
+    shift
+    
+    case "$command" in
+        "orders")
+            orders_command "$@"
+            ;;
+        "positions")
+            positions_command "$@"
+            ;;
+        "config")
+            show_config
+            ;;
+        "configure")
+            configure_credentials
+            ;;
+        "version")
+            show_version
+            ;;
+        "help")
+            show_help
+            ;;
+        *)
+            show_help
+            return 1
+            ;;
+    esac
+}
+
+# Execute main function
+main "$@"
