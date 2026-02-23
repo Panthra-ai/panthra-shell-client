@@ -28,7 +28,7 @@ api_request() {
             "$url" \
             2>/dev/null)
         http_code=$(echo "$response" | tail -n1)
-        response=$(echo "$response" | head -n -1)
+        response=$(echo "$response" | sed '$d')
     else
         response=$(curl -s -w "\n%{http_code}" \
             -X "$method" \
@@ -37,7 +37,7 @@ api_request() {
             "$url$params" \
             2>/dev/null)
         http_code=$(echo "$response" | tail -n1)
-        response=$(echo "$response" | head -n -1)
+        response=$(echo "$response" | sed '$d')
     fi
     
     if [ "$http_code" != "200" ]; then
