@@ -17,138 +17,58 @@ seo:
                 <img src="{{ '/assets/images/github-icon.svg' | relative_url }}" alt="GitHub">
                 View on GitHub
             </a>
-            <a href="https://dev.panthra.ai/documentation/clients-panthra-shell-client" class="btn-secondary">
-                Documentation
-            </a>
+            <a href="https://dev.panthra.ai/documentation/clients-panthra-shell-client" class="btn-secondary">Documentation</a>
         </div>
     </div>
 </section>
 
-<section class="features-section">
-    <div class="section-header">
-        <h2 class="section-title">Install in One Command</h2>
-        <p class="section-subtitle">Cross-platform installer that updates your shell PATH automatically.</p>
-    </div>
-    <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3>One-liner</h3>
-            <pre class="code-block">curl -sSL https://raw.githubusercontent.com/Panthra-ai/panthra-shell-client/main/install-remote.sh | bash</pre>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">🔧</div>
-            <h3>Post-install</h3>
-            <pre class="code-block"># After install
-source ~/.profile
-panthra --version</pre>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">�️</div>
-            <h3>File locations</h3>
-            <p>Installs to <code class="inline-code">~/.local/bin</code> and updates <code class="inline-code">~/.profile</code> for PATH. Works on Linux, macOS, WSL.</p>
-        </div>
-    </div>
+<section>
+    <h2 class="section-title">Install</h2>
+    <p class="section-subtitle">Cross-platform one-liner. Installs to <code class="inline-code">~/.local/bin</code> and updates <code class="inline-code">~/.profile</code>.</p>
+    <pre class="code-block">curl -sSL https://raw.githubusercontent.com/Panthra-ai/panthra-shell-client/main/install-remote.sh | bash</pre>
 </section>
 
-<section class="quick-start-section">
-    <div class="section-header">
-        <h2 class="section-title">Configure Credentials</h2>
-        <p class="section-subtitle">Interactive setup or environment variables.</p>
-    </div>
-    <div class="quick-steps">
-        <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-                <h3>Interactive</h3>
-                <div class="code-block">panthra configure
-panthra config</div>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-                <h3>Env variables</h3>
-                <div class="code-block">export PANTHRA_API_KEY="your-api-key"
-export PANTHRA_API_SECRET="your-api-secret"
-export PANTHRA_BASE_URL="https://dev-api.panthra.ai/client-api-service/api/v1"</div>
-            </div>
-        </div>
-        <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-                <h3>Verify</h3>
-                <div class="code-block">panthra --version
-panthra config</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="latest-posts-section">
-    <div class="section-header">
-        <h2 class="section-title">Usage Examples</h2>
-        <p class="section-subtitle">Common trading commands for orders and positions.</p>
-    </div>
-    <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon">🛒</div>
-            <h3>Orders</h3>
-            <div class="code-block"># List orders
-panthra orders list
-
-# Create market order
-panthra orders create --symbol TSLA --side BUY --quantity 1 --type MARKET
-
-# Cancel an order
-panthra orders cancel --order-id 12345</div>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">📈</div>
-            <h3>Positions</h3>
-            <div class="code-block"># Open positions
-panthra positions open
-
-# All positions
-panthra positions list
-
-# Position details
-panthra positions get --position-id pos_12345</div>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">✅</div>
-            <h3>Verify</h3>
-            <div class="code-block">source ~/.profile
+<section>
+    <h2 class="section-title">Post-install</h2>
+    <p class="section-subtitle">Apply PATH and verify.</p>
+    <pre class="code-block">source ~/.profile
 panthra --version
-which panthra</div>
-        </div>
-    </div>
+which panthra</pre>
 </section>
 
-<section class="resources-section">
-    <div class="section-header">
-        <h2 class="section-title">Resources</h2>
-        <p class="section-subtitle">Everything you need to run the Panthra Shell Client.</p>
-    </div>
-    <div class="resources-grid">
-        <div class="resource-card">
-            <h3>📖 Documentation</h3>
-            <p>Complete API reference and usage examples.</p>
-            <a href="https://dev.panthra.ai/documentation/clients-panthra-shell-client" class="resource-link">View Docs →</a>
-        </div>
-        <div class="resource-card">
-            <h3>💻 GitHub</h3>
-            <p>Source, issues, and contributions.</p>
-            <a href="https://github.com/Panthra-ai/panthra-shell-client" class="resource-link">GitHub →</a>
-        </div>
-        <div class="resource-card">
-            <h3>🌐 Platform</h3>
-            <p>Panthra trading platform.</p>
-            <a href="https://dev.panthra.ai" class="resource-link">Visit →</a>
-        </div>
-        <div class="resource-card">
-            <h3>📧 Support</h3>
-            <p>Help from our team.</p>
-            <a href="https://dev.panthra.ai/support" class="resource-link">Support →</a>
-        </div>
-    </div>
+<section>
+    <h2 class="section-title">Configure</h2>
+    <p class="section-subtitle">Interactive or env variables.</p>
+    <pre class="code-block"># Interactive
+panthra configure
+panthra config
+
+# Environment variables
+export PANTHRA_API_KEY="your-api-key"
+export PANTHRA_API_SECRET="your-api-secret"
+export PANTHRA_BASE_URL="https://dev-api.panthra.ai/client-api-service/api/v1"</pre>
+</section>
+
+<section>
+    <h2 class="section-title">Usage</h2>
+    <p class="section-subtitle">Common trading commands.</p>
+    <pre class="code-block"># Orders
+panthra orders list
+panthra orders create --symbol TSLA --side BUY --quantity 1 --type MARKET
+panthra orders cancel --order-id 12345
+
+# Positions
+panthra positions open
+panthra positions list
+panthra positions get --position-id pos_12345</pre>
+</section>
+
+<section>
+    <h2 class="section-title">Resources</h2>
+    <ul>
+        <li><a href="https://dev.panthra.ai/documentation/clients-panthra-shell-client">Documentation</a></li>
+        <li><a href="https://github.com/Panthra-ai/panthra-shell-client">GitHub</a></li>
+        <li><a href="https://dev.panthra.ai">Platform</a></li>
+        <li><a href="https://github.com/Panthra-ai/panthra-shell-client/issues">Support (GitHub Issues)</a></li>
+    </ul>
 </section>
