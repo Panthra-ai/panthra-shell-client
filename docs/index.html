@@ -8,153 +8,147 @@ seo:
 
 <section class="hero-section">
     <div class="hero-content">
-        <h1>Panthra Shell Client Blog</h1>
+        <h1>Panthra Shell Client</h1>
         <p class="hero-description">
-            Professional shell client for the Panthra trading API. 
-            Tutorials, updates, and best practices for automated trading.
+            Production-ready shell client for the Panthra trading API. Install, configure, and trade from any shell in seconds.
         </p>
         <div class="hero-actions">
             <a href="https://github.com/Panthra-ai/panthra-shell-client" class="btn-primary">
                 <img src="{{ '/assets/images/github-icon.svg' | relative_url }}" alt="GitHub">
-                Get Started
+                View on GitHub
             </a>
-            <a href="{{ '/blog/' | relative_url }}" class="btn-secondary">
-                Read Blog Posts
+            <a href="https://dev.panthra.ai/documentation/clients-panthra-shell-client" class="btn-secondary">
+                Documentation
             </a>
         </div>
     </div>
 </section>
 
 <section class="features-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Why Choose Panthra Shell Client?</h2>
-            <p class="section-subtitle">
-                Professional-grade tools for serious trading automation with cross-platform compatibility and enterprise security.
-            </p>
+    <div class="section-header">
+        <h2 class="section-title">Install in One Command</h2>
+        <p class="section-subtitle">Cross-platform installer that updates your shell PATH automatically.</p>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>One-liner</h3>
+            <pre class="code-block">curl -sSL https://raw.githubusercontent.com/Panthra-ai/panthra-shell-client/main/install-remote.sh | bash</pre>
         </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🌍</div>
-                <h3>Cross-Platform</h3>
-                <p>Works on Linux, macOS, and Windows with universal shell support and seamless integration.</p>
+        <div class="feature-card">
+            <div class="feature-icon">🔧</div>
+            <h3>Post-install</h3>
+            <pre class="code-block"># After install
+source ~/.profile
+panthra --version</pre>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">�️</div>
+            <h3>File locations</h3>
+            <p>Installs to <code class="inline-code">~/.local/bin</code> and updates <code class="inline-code">~/.profile</code> for PATH. Works on Linux, macOS, WSL.</p>
+        </div>
+    </div>
+</section>
+
+<section class="quick-start-section">
+    <div class="section-header">
+        <h2 class="section-title">Configure Credentials</h2>
+        <p class="section-subtitle">Interactive setup or environment variables.</p>
+    </div>
+    <div class="quick-steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3>Interactive</h3>
+                <div class="code-block">panthra configure
+panthra config</div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>One-Liner Install</h3>
-                <p>Get started in seconds with our simple installation script that handles everything automatically.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3>Env variables</h3>
+                <div class="code-block">export PANTHRA_API_KEY="your-api-key"
+export PANTHRA_API_SECRET="your-api-secret"
+export PANTHRA_BASE_URL="https://dev-api.panthra.ai/client-api-service/api/v1"</div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Enterprise Security</h3>
-                <p>Secure credential storage, HTTPS-only communication, and no sensitive data in command history.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>Professional Tools</h3>
-                <p>Production-ready trading tools with real-time order management and position tracking.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3>Verify</h3>
+                <div class="code-block">panthra --version
+panthra config</div>
             </div>
         </div>
     </div>
 </section>
 
 <section class="latest-posts-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Latest Blog Posts</h2>
-            <p class="section-subtitle">
-                Stay updated with the latest features, tutorials, and best practices for automated trading.
-            </p>
-        </div>
-        <div class="posts-grid">
-            {% for post in site.posts limit:3 %}
-            <article class="blog-card">
-                <div class="blog-card-image"></div>
-                <div class="blog-card-content">
-                    <div class="post-meta">
-                        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
-                        {% if post.categories %}
-                        <span class="post-category">{{ post.categories | first }}</span>
-                        {% endif %}
-                    </div>
-                    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-                    <p>{{ post.description }}</p>
-                    <a href="{{ post.url | relative_url }}" class="read-more">Read More →</a>
-                </div>
-            </article>
-            {% endfor %}
-        </div>
-        <div class="view-all-posts">
-            <a href="{{ '/blog/' | relative_url }}" class="btn-secondary">View All Posts</a>
-        </div>
+    <div class="section-header">
+        <h2 class="section-title">Usage Examples</h2>
+        <p class="section-subtitle">Common trading commands for orders and positions.</p>
     </div>
-</section>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🛒</div>
+            <h3>Orders</h3>
+            <div class="code-block"># List orders
+panthra orders list
 
-<section class="quick-start-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Quick Start Guide</h2>
-            <p class="section-subtitle">
-                Get up and running with Panthra Shell Client in just three simple steps.
-            </p>
+# Create market order
+panthra orders create --symbol TSLA --side BUY --quantity 1 --type MARKET
+
+# Cancel an order
+panthra orders cancel --order-id 12345</div>
         </div>
-        <div class="quick-steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h3>Install</h3>
-                    <pre><code>curl -sSL https://raw.githubusercontent.com/Panthra-ai/panthra-shell-client/main/install-remote.sh | bash</code></pre>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3>Configure</h3>
-                    <pre><code>source ~/.profile
-panthra configure</code></pre>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3>Start Trading</h3>
-                    <pre><code>panthra orders list
-panthra positions open</code></pre>
-                </div>
-            </div>
+        <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>Positions</h3>
+            <div class="code-block"># Open positions
+panthra positions open
+
+# All positions
+panthra positions list
+
+# Position details
+panthra positions get --position-id pos_12345</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">✅</div>
+            <h3>Verify</h3>
+            <div class="code-block">source ~/.profile
+panthra --version
+which panthra</div>
         </div>
     </div>
 </section>
 
 <section class="resources-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Resources & Links</h2>
-            <p class="section-subtitle">
-                Everything you need to get the most out of Panthra Shell Client.
-            </p>
+    <div class="section-header">
+        <h2 class="section-title">Resources</h2>
+        <p class="section-subtitle">Everything you need to run the Panthra Shell Client.</p>
+    </div>
+    <div class="resources-grid">
+        <div class="resource-card">
+            <h3>📖 Documentation</h3>
+            <p>Complete API reference and usage examples.</p>
+            <a href="https://dev.panthra.ai/documentation/clients-panthra-shell-client" class="resource-link">View Docs →</a>
         </div>
-        <div class="resources-grid">
-            <div class="resource-card">
-                <h3>📖 Documentation</h3>
-                <p>Complete API reference and usage examples for advanced trading automation.</p>
-                <a href="https://de.panthra.ai/documentation/clients-panthra-shell-client" class="resource-link">View Docs →</a>
-            </div>
-            <div class="resource-card">
-                <h3>🌐 Panthra Platform</h3>
-                <p>Advanced trading platform with real-time analytics and professional tools.</p>
-                <a href="https://de.panthra.ai" class="resource-link">Visit Platform →</a>
-            </div>
-            <div class="resource-card">
-                <h3>💻 GitHub</h3>
-                <p>Source code, issues, and contributions from our active developer community.</p>
-                <a href="https://github.com/Panthra-ai/panthra-shell-client" class="resource-link">View on GitHub →</a>
-            </div>
-            <div class="resource-card">
-                <h3>📧 Support</h3>
-                <p>Get help from our expert support team and connect with other traders.</p>
-                <a href="https://de.panthra.ai/support" class="resource-link">Contact Support →</a>
-            </div>
+        <div class="resource-card">
+            <h3>💻 GitHub</h3>
+            <p>Source, issues, and contributions.</p>
+            <a href="https://github.com/Panthra-ai/panthra-shell-client" class="resource-link">GitHub →</a>
+        </div>
+        <div class="resource-card">
+            <h3>🌐 Platform</h3>
+            <p>Panthra trading platform.</p>
+            <a href="https://dev.panthra.ai" class="resource-link">Visit →</a>
+        </div>
+        <div class="resource-card">
+            <h3>📧 Support</h3>
+            <p>Help from our team.</p>
+            <a href="https://dev.panthra.ai/support" class="resource-link">Support →</a>
         </div>
     </div>
 </section>
