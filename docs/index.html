@@ -1,45 +1,40 @@
----
-layout: default
-title: "Panthra Shell Client Blog"
-description: "Professional shell client for Panthra trading API - Tutorials, updates, and best practices for automated trading."
-seo:
-  type: WebPage
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panthra Shell Client</title>
+  <meta name="description" content="Install, configure, and use the Panthra Shell Client">
+  <link rel="icon" type="image/png" href="https://panthra.ai/favicon-32x32.png">
+</head>
 
-<section class="hero-section">
-    <div class="hero-content">
-        <h1>Panthra Shell Client</h1>
-        <p class="hero-description">
-            Production-ready shell client for the Panthra trading API. Install, configure, and trade from any shell in seconds.
-        </p>
-        <div class="hero-actions">
-            <a href="https://github.com/Panthra-ai/panthra-shell-client" class="btn-primary">
-                <img src="{{ '/assets/images/github-icon.svg' | relative_url }}" alt="GitHub">
-                View on GitHub
-            </a>
-            <a href="https://dev.panthra.ai/documentation/clients-panthra-shell-client" class="btn-secondary">Documentation</a>
-        </div>
-    </div>
+<section>
+  <h1>Panthra Shell Client</h1>
+  <p>Install, configure, and trade with the Panthra API from any shell.</p>
+  <div class="actions">
+    <a href="https://github.com/Panthra-ai/panthra-shell-client" class="btn-primary">GitHub</a>
+    <a href="https://dev.panthra.ai/documentation/clients-panthra-shell-client" class="btn-secondary">Documentation</a>
+  </div>
 </section>
 
 <section>
-    <h2 class="section-title">Install</h2>
-    <p class="section-subtitle">Cross-platform one-liner. Installs to <code class="inline-code">~/.local/bin</code> and updates <code class="inline-code">~/.profile</code>.</p>
-    <pre class="code-block">curl -sSL https://raw.githubusercontent.com/Panthra-ai/panthra-shell-client/main/install-remote.sh | bash</pre>
+  <h2>Install</h2>
+  <p>Cross-platform one-liner. Installs to <code class="inline-code">~/.local/bin</code> and updates <code class="inline-code">~/.profile</code>.</p>
+  <pre class="code-block">curl -sSL https://raw.githubusercontent.com/Panthra-ai/panthra-shell-client/main/install-remote.sh | bash</pre>
 </section>
 
 <section>
-    <h2 class="section-title">Post-install</h2>
-    <p class="section-subtitle">Apply PATH and verify.</p>
-    <pre class="code-block">source ~/.profile
+  <h2>Post-install</h2>
+  <p>Apply PATH and verify.</p>
+  <pre class="code-block">source ~/.profile
 panthra --version
 which panthra</pre>
 </section>
 
 <section>
-    <h2 class="section-title">Configure</h2>
-    <p class="section-subtitle">Interactive or env variables.</p>
-    <pre class="code-block"># Interactive
+  <h2>Configure</h2>
+  <p>Interactive or environment variables.</p>
+  <pre class="code-block"># Interactive
 panthra configure
 panthra config
 
@@ -50,9 +45,9 @@ export PANTHRA_BASE_URL="https://dev-api.panthra.ai/client-api-service/api/v1"</
 </section>
 
 <section>
-    <h2 class="section-title">Usage</h2>
-    <p class="section-subtitle">Common trading commands.</p>
-    <pre class="code-block"># Orders
+  <h2>Usage</h2>
+  <p>Common trading commands.</p>
+  <pre class="code-block"># Orders
 panthra orders list
 panthra orders create --symbol TSLA --side BUY --quantity 1 --type MARKET
 panthra orders cancel --order-id 12345
@@ -64,11 +59,11 @@ panthra positions get --position-id pos_12345</pre>
 </section>
 
 <section>
-    <h2 class="section-title">Resources</h2>
-    <ul>
-        <li><a href="https://dev.panthra.ai/documentation/clients-panthra-shell-client">Documentation</a></li>
-        <li><a href="https://github.com/Panthra-ai/panthra-shell-client">GitHub</a></li>
-        <li><a href="https://dev.panthra.ai">Platform</a></li>
-        <li><a href="https://github.com/Panthra-ai/panthra-shell-client/issues">Support (GitHub Issues)</a></li>
-    </ul>
+  <h2>Resources</h2>
+  <ul class="list-links">
+    <li><a href="https://dev.panthra.ai/documentation/clients-panthra-shell-client">Documentation</a></li>
+    <li><a href="https://github.com/Panthra-ai/panthra-shell-client">GitHub</a></li>
+    <li><a href="https://dev.panthra.ai">Platform</a></li>
+    <li><a href="https://github.com/Panthra-ai/panthra-shell-client/issues">Support (GitHub Issues)</a></li>
+  </ul>
 </section>

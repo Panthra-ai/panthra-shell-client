@@ -1,129 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- SEO Meta Tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-    <meta name="author" content="{{ site.author }}">
-    <meta name="keywords" content="panthra, trading api, shell client, automated trading, cryptocurrency, trading bot">
-    
-    <!-- Open Graph SEO -->
-    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-    <meta property="og:type" content="{% if page.seo.type %}{{ page.seo.type }}{% else %}website{% endif %}">
-    <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
-    <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/panthra-og-image.jpg">
-    <meta property="og:site_name" content="{{ site.title }}">
-    
-    <!-- Twitter Card SEO -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@{{ site.twitter.username }}">
-    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-    <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-    <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/panthra-twitter-card.jpg">
-    
-    <!-- Canonical URL for SEO -->
-    <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
-    
-    <!-- Professional CSS -->
-    <link rel="stylesheet" href="{{ '/assets/css/professional.css' | relative_url }}">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
-    
-    <!-- JSON-LD Structured Data for SEO -->
-    {% if page.seo.type == "BlogPosting" %}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "{{ page.title }}",
-      "description": "{{ page.description }}",
-      "author": {
-        "@type": "Organization",
-        "name": "{{ site.author }}"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "{{ site.author }}",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "{{ site.url }}{{ site.baseurl }}/assets/images/logo.png"
-        }
-      },
-      "datePublished": "{{ page.date | date_to_xmlschema }}",
-      "dateModified": "{{ page.date | date_to_xmlschema }}",
-      "image": "{{ site.url }}{{ site.baseurl }}/assets/images/blog-{{ page.slug }}.jpg",
-      "url": "{{ site.url }}{{ site.baseurl }}{{ page.url }}"
-    }
-    </script>
-    {% endif %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.description }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link rel="icon" type="image/png" href="https://panthra.ai/favicon-32x32.png">
 </head>
 <body>
-    <header class="site-header">
-        <nav class="navigation">
-            <div class="nav-container">
-                <a href="{{ site.baseurl }}/" class="logo">
-                    <img src="{{ '/assets/images/logo-light.png' | relative_url }}" alt="Panthra Logo">
-                </a>
-                <ul class="nav-links">
-                    <li><a href="{{ site.baseurl }}/" class="nav-link">Home</a></li>
-                    <li><a href="{{ site.baseurl }}/blog/" class="nav-link">Blog</a></li>
-                    <li><a href="{{ site.baseurl }}/tutorials/" class="nav-link">Tutorials</a></li>
-                    <li><a href="https://github.com/Panthra-ai/panthra-shell-client" class="nav-link">GitHub</a></li>
-                </ul>
-            </div>
-        </nav>
+  <div class="page">
+    <header class="page-header">
+      <a href="{{ site.baseurl }}/" class="logo-link">
+        <img src="https://panthra.ai/logo-light.png" alt="Panthra Logo" class="logo">
+        <span class="product-name">Panthra Shell Client</span>
+      </a>
+      <nav class="nav-links">
+        <a href="https://github.com/Panthra-ai/panthra-shell-client">GitHub</a>
+        <a href="https://dev.panthra.ai/documentation/clients-panthra-shell-client">Docs</a>
+      </nav>
     </header>
 
-    <main class="site-content">
-        {{ content }}
+    <main class="page-content">
+      {{ content }}
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-sections">
-                <div class="footer-section">
-                    <h4>Panthra Shell Client</h4>
-                    <p>Professional shell client for the Panthra trading API</p>
-                    <a href="https://github.com/Panthra-ai/panthra-shell-client" class="github-link">
-                        <img src="{{ '/assets/images/github-icon.svg' | relative_url }}" alt="GitHub">
-                        View on GitHub
-                    </a>
-                </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="https://dev.panthra.ai/documentation/clients-panthra-shell-client">Documentation</a></li>
-                        <li><a href="https://dev.panthra.ai">Panthra Platform</a></li>
-                        <li><a href="https://dev.panthra.ai/support">Support</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <ul>
-                        <li><a href="https://twitter.com/panthra_ai">Twitter</a></li>
-                        <li><a href="mailto:support@panthra.ai">Email</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; {{ site.time | date: "%Y" }} Panthra Team. All rights reserved.</p>
-            </div>
-        </div>
+    <footer class="page-footer">
+      <p>&copy; {{ site.time | date: "%Y" }} Panthra Shell Client</p>
     </footer>
-
-    <!-- Analytics (if needed) -->
-    {% if site.google_analytics %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '{{ site.google_analytics }}');
-    </script>
-    {% endif %}
+  </div>
 </body>
 </html>
