@@ -38,16 +38,7 @@ sed -i '' 's|LIB_DIR="$SCRIPT_DIR/../lib"|LIB_DIR="$INSTALL_DIR/lib"|g' "$INSTAL
 
 # Update PATH in shell config files
 update_shell_config() {
-    local shell_config=""
-    
-    # Detect shell and config file
-    if [ -n "$ZSH_VERSION" ] || [ -f "$HOME/.zshrc" ]; then
-        shell_config="$HOME/.zshrc"
-    elif [ -n "$BASH_VERSION" ] || [ -f "$HOME/.bashrc" ]; then
-        shell_config="$HOME/.bashrc"
-    else
-        shell_config="$HOME/.profile"
-    fi
+    local shell_config="$HOME/.profile"
     
     # Add PATH if not already there
     if ! grep -q "export PATH.*$INSTALL_DIR" "$shell_config" 2>/dev/null; then

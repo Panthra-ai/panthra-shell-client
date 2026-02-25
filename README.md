@@ -2,6 +2,8 @@
 
 Professional shell client for the Panthra trading API.
 
+**📖 [Full Documentation](https://panthra.ai/documentation/clients-panthra-shell-client)**
+
 ## Installation
 
 ### Option 1: One-liner Installation (Recommended)
@@ -23,22 +25,26 @@ After installation, run one of the following commands to make `panthra` availabl
 
 ```bash
 # For immediate use (recommended)
-source ~/.zshrc
+source ~/.profile
 
 # Or restart your terminal
 ```
+
+The installer automatically updates `~/.profile`, which works across all platforms and shells.
 
 ## Installation Details
 
 ### File Location
 - **Files stored in**: `~/.local/bin/` and `~/.local/bin/lib/`
-- **Shell configuration**: Automatically updated in `~/.zshrc` or `~/.bashrc`
-- **PATH requirement**: Run `source ~/.zshrc` or restart terminal after installation
+- **Shell configuration**: Automatically updated in `~/.profile`
+- **Cross-platform**: Works on Linux, macOS, Windows (WSL)
+- **Universal shell support**: Works with Bash, Zsh, Fish, and all other shells
+- **PATH requirement**: Run `source ~/.profile` or restart terminal after installation
 
 ### Verification
 ```bash
-# Verify installation
-source ~/.zshrc
+# Verify installation (after sourcing or restart)
+source ~/.profile
 panthra --version
 
 # Check installation location
@@ -95,7 +101,7 @@ Credentials are stored in `~/.panthra/credentials`:
 ```bash
 export PANTHRA_API_KEY="your-api-key"
 export PANTHRA_API_SECRET="your-api-secret"
-export PANTHRA_BASE_URL="http://localhost:8081/client-api-service/api/v1"
+export PANTHRA_BASE_URL="https://dev-api.panthra.ai/client-api-service/api/v1"
 ```
 
 ## Dependencies
@@ -109,6 +115,12 @@ MIT License - see LICENSE file for details.
 
 ## Related Projects
 
-- [JavaScript Client](https://github.com/Panthra-ai/panthra-js-client)
-- [Python Client](https://github.com/Panthra-ai/panthra-python-client)
-- [Go Client](https://github.com/Panthra-ai/panthra-go-client)
+- [Panthra JavaScript Client](https://github.com/Panthra-ai/panthra-js-client)
+- [Panthra Python Client](https://github.com/Panthra-ai/panthra-python-client)
+- [Panthra Go Client](https://github.com/Panthra-ai/panthra-go-client)
+
+---
+
+**📖 [Full Documentation & Tutorials](https://panthra.ai/documentation/clients-panthra-shell-client)** |  
+**🌐 [Panthra Trading Platform](https://panthra.ai)** |  
+**📧 [Support & Community](https://panthra.ai/support)**

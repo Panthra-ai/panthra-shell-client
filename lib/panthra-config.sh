@@ -28,7 +28,7 @@ load_config() {
     # Set defaults
     PANTHRA_API_KEY="${PANTHRA_API_KEY:-}"
     PANTHRA_API_SECRET="${PANTHRA_API_SECRET:-}"
-    PANTHRA_BASE_URL="${PANTHRA_BASE_URL:-http://localhost:8081/client-api-service/api/v1}"
+    PANTHRA_BASE_URL="${PANTHRA_BASE_URL:-https://dev-api.panthra.ai/client-api-service/api/v1}"
     PANTHRA_DEBUG="${PANTHRA_DEBUG:-false}"
     PANTHRA_OUTPUT="${PANTHRA_OUTPUT:-json}"
 }
@@ -56,7 +56,7 @@ configure_credentials() {
     done
     
     # Set base URL to local endpoint by default
-    base_url="http://localhost:8081/client-api-service/api/v1"
+    base_url="https://dev-api.panthra.ai/client-api-service/api/v1"
     
     # Create ~/.panthra directory
     mkdir -p "$HOME/.panthra"
