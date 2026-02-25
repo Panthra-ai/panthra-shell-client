@@ -116,7 +116,7 @@ panthra-shell-client/
 ## 🌐 SEO & Documentation
 
 This release includes:
-- **Full documentation** at [panthra.ai/documentation/clients-panthra-shell-client](https://panthra.ai/documentation/clients-panthra-shell-client)
+- **Full documentation** at [de.panthra.ai/documentation/clients-panthra-shell-client](https://de.panthra.ai/documentation/clients-panthra-shell-client)
 - **SEO-optimized README** with proper meta tags
 - **Cross-platform compatibility** tested on multiple systems
 
@@ -144,9 +144,9 @@ We welcome contributions! Check out our [GitHub repository](https://github.com/P
 
 ## 📚 Resources
 
-- **📖 [Full Documentation](https://panthra.ai/documentation/clients-panthra-shell-client)**
-- **🌐 [Panthra Trading Platform](https://panthra.ai)**
-- **📧 [Support & Community](https://panthra.ai/support)**
+- **📖 [Full Documentation](https://de.panthra.ai/documentation/clients-panthra-shell-client)**
+- **🌐 [Panthra Trading Platform](https://de.panthra.ai)**
+- **📧 [Support & Community](https://de.panthra.ai/support)**
 - **💻 [GitHub Repository](https://github.com/Panthra-ai/panthra-shell-client)**
 
 ---

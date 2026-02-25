@@ -122,12 +122,12 @@ panthra positions open</code></pre>
             <div class="resource-card">
                 <h3>📖 Documentation</h3>
                 <p>Complete API reference and usage examples</p>
-                <a href="https://panthra.ai/documentation/clients-panthra-shell-client" class="resource-link">View Docs →</a>
+                <a href="https://de.panthra.ai/documentation/clients-panthra-shell-client" class="resource-link">View Docs →</a>
             </div>
             <div class="resource-card">
                 <h3>🌐 Panthra Platform</h3>
                 <p>Advanced trading platform and analytics</p>
-                <a href="https://panthra.ai" class="resource-link">Visit Platform →</a>
+                <a href="https://de.panthra.ai" class="resource-link">Visit Platform →</a>
             </div>
             <div class="resource-card">
                 <h3>💻 GitHub</h3>
@@ -137,7 +137,7 @@ panthra positions open</code></pre>
             <div class="resource-card">
                 <h3>📧 Support</h3>
                 <p>Get help from our support team</p>
-                <a href="https://panthra.ai/support" class="resource-link">Contact Support →</a>
+                <a href="https://de.panthra.ai/support" class="resource-link">Contact Support →</a>
             </div>
         </div>
     </div>
