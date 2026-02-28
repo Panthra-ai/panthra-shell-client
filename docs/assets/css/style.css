@@ -111,6 +111,7 @@ body {
 }
 
 .code-block {
+  position: relative;
   background: #0f172a;
   color: #e5e7eb;
   padding: 10px 12px;
@@ -120,6 +121,23 @@ body {
   overflow-x: auto;
   white-space: pre-wrap;
   border: 1px solid #1f2937;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #111827;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  background: #1f2937;
 }
 
 .inline-code {

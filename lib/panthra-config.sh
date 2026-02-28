@@ -55,8 +55,11 @@ configure_credentials() {
         echo ""
     done
     
-    # Set base URL to local endpoint by default
-    base_url="https://dev-api.panthra.ai/client-api-service/api/v1"
+    # Base URL (default to dev, allow override)
+    read -p "Base URL [https://dev-api.panthra.ai/client-api-service/api/v1]: " base_url
+    if [ -z "$base_url" ]; then
+        base_url="https://dev-api.panthra.ai/client-api-service/api/v1"
+    fi
     
     # Create ~/.panthra directory
     mkdir -p "$HOME/.panthra"
@@ -107,6 +110,8 @@ USAGE:
 COMMANDS:
     orders        - Order management commands
     positions     - Position management commands
+    balances      - Balance lookup commands
+    quotes        - Market data and search
     config        - Show current configuration
     configure     - Set up API credentials
     version       - Show version information
@@ -116,9 +121,7 @@ ORDER COMMANDS:
     list          List all orders
     open          List open orders
     create        Create new order
-    get <id>     Get specific order
     cancel <id>   Cancel order (open orders only)
-    cancel-all    Cancel all open orders
 
 POSITION COMMANDS:
     list          List positions
@@ -130,7 +133,7 @@ GLOBAL OPTIONS:
     --help, -h     Show help message
     --version, -v  Show version information
     --debug, -d    Enable debug output
-    --output, -o    Output format: json, table, csv
+    --output, -o    Output format: json, table
     --quiet, -q    Suppress non-error output
 
 ORDER OPTIONS:
@@ -151,7 +154,10 @@ EXAMPLES:
     panthra orders create --symbol TSLA --side BUY --quantity 10 --type MARKET
     panthra orders create --symbol AAPL --side BUY --quantity 100 --type LIMIT --price 150.50
     panthra positions list --output table
-    panthra orders cancel-all
+    panthra orders cancel <id>
+    panthra balances get USD
+    panthra quotes quote --symbol BTC --currency USD
+    panthra quotes search --query ETH
 EOF
 }
 

@@ -16,42 +16,62 @@ description: "Install, configure, and use the Panthra Shell Client"
 <section>
   <h2>Install</h2>
   <p>Cross-platform one-liner. Installs to <code class="inline-code">~/.local/bin</code> and updates <code class="inline-code">~/.profile</code>.</p>
-  <pre class="code-block">curl -sSL https://raw.githubusercontent.com/Panthra-ai/panthra-shell-client/main/install-remote.sh | bash</pre>
+  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>curl -sSL https://raw.githubusercontent.com/Panthra-ai/panthra-shell-client/main/install-remote.sh | bash</pre></div>
 </section>
 
 <section>
   <h2>Post-install</h2>
   <p>Apply PATH and verify.</p>
-  <pre class="code-block">source ~/.profile
+  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>source ~/.profile
 panthra --version
-which panthra</pre>
+which panthra</pre></div>
 </section>
 
 <section>
   <h2>Configure</h2>
   <p>Interactive or environment variables.</p>
-  <pre class="code-block"># Interactive
+  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre># Interactive
 panthra configure
 panthra config
 
 # Environment variables
 export PANTHRA_API_KEY="your-api-key"
 export PANTHRA_API_SECRET="your-api-secret"
-export PANTHRA_BASE_URL="https://dev-api.panthra.ai/client-api-service/api/v1"</pre>
+export PANTHRA_BASE_URL="https://dev-api.panthra.ai/client-api-service/api/v1"</pre></div>
 </section>
 
 <section>
   <h2>Usage</h2>
-  <p>Common trading commands.</p>
-  <pre class="code-block"># Orders
-panthra orders list
+  <p>Output formats: <code class="inline-code">json</code> (default) or <code class="inline-code">table</code>. CSV not supported.</p>
+  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre># Orders
+panthra orders list --output table
 panthra orders create --symbol TSLA --side BUY --quantity 1 --type MARKET
-panthra orders cancel --order-id 12345
+panthra orders create --symbol AAPL --side BUY --quantity 100 --type LIMIT --price 150.50
+panthra orders cancel &lt;order-id&gt;
 
 # Positions
-panthra positions open
-panthra positions list
-panthra positions get --position-id pos_12345</pre>
+panthra positions list --output table
+panthra positions list-all --output table
+
+# Balances
+panthra balances USD --output table
+
+# Search & Quotes
+panthra search META --output table
+panthra quotes META USD --output table</pre></div>
+  <script>
+  function copyCode(btn) {
+    const pre = btn.nextElementSibling;
+    const text = pre.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied';
+      setTimeout(() => btn.textContent = 'Copy', 1200);
+    }).catch(() => {
+      btn.textContent = 'Error';
+      setTimeout(() => btn.textContent = 'Copy', 1200);
+    });
+  }
+  </script>
 </section>
 
 <section>

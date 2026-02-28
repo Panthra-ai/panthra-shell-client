@@ -32,6 +32,24 @@ source ~/.profile
 
 The installer automatically updates `~/.profile`, which works across all platforms and shells.
 
+If `panthra` is still not found, add the PATH manually for your shell and re-source:
+
+**Bash/Zsh (Linux/macOS/WSL)**
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+source ~/.profile
+```
+
+**Fish**
+```fish
+set -U fish_user_paths $HOME/.local/bin $fish_user_paths
+```
+
+**Windows (PowerShell)**
+Add `%USERPROFILE%\.local\bin` to your user PATH environment variable, then open a new shell.
+
 ## Installation Details
 
 ### File Location
@@ -67,13 +85,15 @@ panthra positions list
 
 ## Usage
 
-### Order Management
+Output formats: `table` (human) or `json` (default). CSV is not supported.
+
+### Orders
 ```bash
 # List all orders
-panthra orders list
+panthra orders list --output table
 
 # List open orders
-panthra orders open
+panthra orders open --output table
 
 # Create market order
 panthra orders create --symbol TSLA --side BUY --quantity 1 --type MARKET
@@ -82,16 +102,30 @@ panthra orders create --symbol TSLA --side BUY --quantity 1 --type MARKET
 panthra orders create --symbol AAPL --side BUY --quantity 100 --type LIMIT --price 150.50
 
 # Cancel order
-panthra orders cancel --order-id 123456789
+panthra orders cancel <order-id>
 ```
 
-### Position Management
+### Positions
 ```bash
 # List positions
-panthra positions list
+panthra positions list --output table
 
 # List all positions (auto-paginate)
-panthra positions list-all
+panthra positions list-all --output table
+```
+
+### Balances
+```bash
+panthra balances USD --output table
+```
+
+### Quotes & Search
+```bash
+# Search tradable symbols
+panthra search META --output table
+
+# Get a quote
+panthra quotes META USD --output table
 ```
 
 ## Configuration

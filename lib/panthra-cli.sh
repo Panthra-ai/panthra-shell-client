@@ -33,7 +33,6 @@ orders_command() {
                 esac
             done
             
-            echo "=== All Orders ==="
             local response=$(api_request "GET" "/orders")
             local orders=$(parse_json "$response")
             format_output "$orders" "$output_format"
@@ -60,7 +59,6 @@ orders_command() {
                 esac
             done
             
-            echo "=== Open Orders ==="
             local response=$(api_request "GET" "/orders/open")
             local orders=$(parse_json "$response")
             format_output "$orders" "$output_format"
@@ -190,41 +188,20 @@ EOF
 )
             fi
             
-            echo "=== Creating Order ==="
             local response=$(api_request "POST" "/orders" "$payload")
             local order=$(parse_json "$response")
             format_output "$order" "$PANTHRA_OUTPUT"
             ;;
-        "get")
-            shift
-            local order_id="$1"
-            if [ -z "$order_id" ]; then
-                echo -e "${RED}Error: --order-id is required${NC}"
-                return 1
-            fi
-            
-            echo "=== Order Details ==="
-            local response=$(api_request "GET" "/orders/$order_id")
-            local order=$(parse_json "$response")
-            format_output "$order" "$PANTHRA_OUTPUT"
-            ;;
         "cancel")
-            shift
-            local order_id="$1"
-            if [ -z "$order_id" ]; then
+            if [ $# -lt 1 ]; then
                 echo -e "${RED}Error: --order-id is required${NC}"
                 return 1
             fi
+            local order_id="$1"
             
-            echo "=== Canceling Order ==="
             local response=$(api_request "PUT" "/orders/$order_id")
             local order=$(parse_json "$response")
             format_output "$order" "$PANTHRA_OUTPUT"
-            ;;
-        "cancel-all")
-            echo "=== Canceling All Open Orders ==="
-            local response=$(api_request "DELETE" "/orders")
-            echo "All open orders cancelled"
             ;;
         *)
             echo "Unknown orders command: $subcommand"
@@ -233,8 +210,125 @@ EOF
     esac
 }
 
+# Quotes commands
+quotes_command() {
+    # Quote only
+    local symbol="$1"
+    shift || true
+    local currency="USD"
+    local output_format="$PANTHRA_OUTPUT"
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --symbol)
+                symbol="$2"; shift 2 ;;
+            --currency)
+                currency="$2"; shift 2 ;;
+            --output)
+                output_format="$2"; shift 2 ;;
+            *)
+                # Allow positional currency if symbol already set
+                if [ -z "$symbol" ]; then
+                    symbol="$1"; shift; continue
+                elif [ "$currency" = "USD" ]; then
+                    currency="$1"; shift; continue
+                else
+                    echo "Unknown option: $1"; return 1
+                fi
+                ;;
+        esac
+    done
+
+    if [ -z "$symbol" ]; then
+        echo -e "${RED}Error: symbol is required${NC}"; return 1
+    fi
+
+    local response=$(api_request "GET" "/market/quote?symbol=$symbol&currency=$currency")
+    local quote=$(parse_json "$response")
+    format_output "$quote" "$output_format"
+}
+
+# Search commands
+search_command() {
+    local query=""
+    local output_format="$PANTHRA_OUTPUT"
+
+    # Parse args (allow --query or positional)
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --query)
+                query="$2"; shift 2 ;;
+            --output)
+                if [[ $# -gt 1 ]]; then
+                    output_format="$2"
+                    shift 2
+                else
+                    echo -e "${RED}Error: --output requires a value${NC}"
+                    return 1
+                fi
+                ;;
+            *)
+                if [ -z "$query" ]; then
+                    query="$1"; shift; continue
+                else
+                    echo "Unknown option: $1"; return 1
+                fi
+                ;;
+        esac
+    done
+
+    if [ -z "$query" ]; then
+        echo -e "${RED}Error: --query is required${NC}"
+        return 1
+    fi
+
+    local response=$(api_request "GET" "/market/search?query=$query")
+    local results=$(parse_json "$response")
+    format_output "$results" "$output_format"
+}
+
+# Balances commands
+balances_command() {
+    local currency="$1"
+    shift || true
+    local output_format="$PANTHRA_OUTPUT"
+
+    if [ -z "$currency" ]; then
+        echo -e "${RED}Error: currency code is required (e.g. USD, EUR)${NC}"
+        return 1
+    fi
+
+    # Parse optional args (currently only --output)
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --output)
+                if [[ $# -gt 1 ]]; then
+                    output_format="$2"
+                    shift 2
+                else
+                    echo -e "${RED}Error: --output requires a value${NC}"
+                    return 1
+                fi
+                ;;
+            *)
+                echo "Unknown option: $1"
+                return 1
+                ;;
+        esac
+    done
+
+    local response=$(api_request "GET" "/balances/$currency")
+    local balance=$(parse_json "$response")
+    format_output "$balance" "$output_format"
+}
+
 # Positions commands
 positions_command() {
+    if [ $# -lt 1 ]; then
+        echo -e "${RED}Error: positions requires a subcommand (list | list-all | close | close-all)${NC}"
+        return 1
+    fi
+
     local subcommand="$1"
     shift
     
@@ -281,13 +375,11 @@ positions_command() {
                 esac
             done
             
-            echo "=== Positions (Page $page, Size $size) ==="
             local response=$(api_request "GET" "/positions?page=$page&size=$size")
             local positions=$(parse_json "$response")
             format_output "$positions" "$output_format"
             ;;
         "list-all")
-            echo "=== All Positions ==="
             local page=0
             local size=50
             local has_next=true
@@ -313,12 +405,10 @@ positions_command() {
                 return 1
             fi
             
-            echo "=== Closing Position ==="
             local response=$(api_request "DELETE" "/positions/$position_id")
             echo "Position $position_id closed"
             ;;
         "close-all")
-            echo "=== Closing All Positions ==="
             local response=$(api_request "DELETE" "/positions")
             echo "All positions closed"
             ;;

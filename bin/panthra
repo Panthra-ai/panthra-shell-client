@@ -51,6 +51,15 @@ main() {
         "positions")
             positions_command "$@"
             ;;
+        "balances")
+            balances_command "$@"
+            ;;
+        "quotes")
+            quotes_command "$@"
+            ;;
+        "search")
+            search_command "$@"
+            ;;
         "config")
             show_config
             ;;
