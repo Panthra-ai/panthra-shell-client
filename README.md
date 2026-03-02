@@ -83,6 +83,8 @@ panthra orders list
 panthra positions list
 ```
 
+Base URL is fixed to `https://api.panthra.ai/v1` (no user input needed).
+
 ## Usage
 
 Output formats: `table` (human) or `json` (default). CSV is not supported.
@@ -117,6 +119,8 @@ panthra positions list-all --output table
 ### Balances
 ```bash
 panthra balances USD --output table
+# or
+panthra balances get USD --output table
 ```
 
 ### Quotes & Search
@@ -135,7 +139,7 @@ Credentials are stored in `~/.panthra/credentials`:
 ```bash
 export PANTHRA_API_KEY="your-api-key"
 export PANTHRA_API_SECRET="your-api-secret"
-export PANTHRA_BASE_URL="https://dev-api.panthra.ai/client-api-service/api/v1"
+export PANTHRA_BASE_URL="https://api.panthra.ai/v1"
 ```
 
 ## Dependencies

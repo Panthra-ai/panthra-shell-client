@@ -29,7 +29,7 @@ which panthra</pre></div>
 
 <section>
   <h2>Configure</h2>
-  <p>Interactive or environment variables.</p>
+  <p>Interactive or environment variables. Base URL is fixed to <code class="inline-code">https://api.panthra.ai/v1</code>.</p>
   <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre># Interactive
 panthra configure
 panthra config
@@ -37,7 +37,7 @@ panthra config
 # Environment variables
 export PANTHRA_API_KEY="your-api-key"
 export PANTHRA_API_SECRET="your-api-secret"
-export PANTHRA_BASE_URL="https://dev-api.panthra.ai/client-api-service/api/v1"</pre></div>
+export PANTHRA_BASE_URL="https://api.panthra.ai/v1"</pre></div>
 </section>
 
 <section>
@@ -55,6 +55,7 @@ panthra positions list-all --output table
 
 # Balances
 panthra balances USD --output table
+panthra balances get USD --output table
 
 # Search & Quotes
 panthra search META --output table

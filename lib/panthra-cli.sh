@@ -289,9 +289,21 @@ search_command() {
 
 # Balances commands
 balances_command() {
-    local currency="$1"
-    shift || true
     local output_format="$PANTHRA_OUTPUT"
+    local currency=""
+
+    # Allow optional subcommand "get" or direct currency
+    if [[ $# -gt 0 ]]; then
+        if [[ "$1" == "get" ]]; then
+            shift
+        fi
+    fi
+
+    # Next token should be currency
+    if [[ $# -gt 0 && "${1#-}" == "$1" ]]; then
+        currency="$1"
+        shift
+    fi
 
     if [ -z "$currency" ]; then
         echo -e "${RED}Error: currency code is required (e.g. USD, EUR)${NC}"
