@@ -28,7 +28,7 @@ load_config() {
     # Set defaults
     PANTHRA_API_KEY="${PANTHRA_API_KEY:-}"
     PANTHRA_API_SECRET="${PANTHRA_API_SECRET:-}"
-    PANTHRA_BASE_URL="${PANTHRA_BASE_URL:-https://dev-api.panthra.ai/client-api-service/api/v1}"
+    PANTHRA_BASE_URL="${PANTHRA_BASE_URL:-https://dev-api.panthra.ai/v1}"
     PANTHRA_DEBUG="${PANTHRA_DEBUG:-false}"
     PANTHRA_OUTPUT="${PANTHRA_OUTPUT:-json}"
 }
@@ -55,11 +55,8 @@ configure_credentials() {
         echo ""
     done
     
-    # Base URL (default to dev, allow override)
-    read -p "Base URL [https://dev-api.panthra.ai/client-api-service/api/v1]: " base_url
-    if [ -z "$base_url" ]; then
-        base_url="https://dev-api.panthra.ai/client-api-service/api/v1"
-    fi
+    # Base URL (fixed)
+    base_url="https://dev-api.panthra.ai/v1"
     
     # Create ~/.panthra directory
     mkdir -p "$HOME/.panthra"

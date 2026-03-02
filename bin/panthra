@@ -29,17 +29,49 @@ main() {
         return 1
     fi
     
-    # Handle global options first
-    case "$1" in
-        "--version"|"-v")
-            show_version
-            return 0
-            ;;
-        "--help"|"-h")
-            show_help
-            return 0
-            ;;
-    esac
+    # Handle global options first (parsed until the first non-option)
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            "--version"|"-v")
+                show_version
+                return 0
+                ;;
+            "--help"|"-h")
+                show_help
+                return 0
+                ;;
+            "--debug"|"-d")
+                export PANTHRA_DEBUG=true
+                shift
+                ;;
+            "--output"|"-o")
+                if [[ $# -gt 1 ]]; then
+                    export PANTHRA_OUTPUT="$2"
+                    shift 2
+                else
+                    echo -e "${RED}Error: --output requires a value${NC}"
+                    return 1
+                fi
+                ;;
+            "--base-url")
+                if [[ $# -gt 1 ]]; then
+                    export PANTHRA_BASE_URL="$2"
+                    shift 2
+                else
+                    echo -e "${RED}Error: --base-url requires a value${NC}"
+                    return 1
+                fi
+                ;;
+            --)
+                shift
+                break
+                ;;
+            *)
+                # First non-option marks the command
+                break
+                ;;
+        esac
+    done
     
     local command="$1"
     shift
