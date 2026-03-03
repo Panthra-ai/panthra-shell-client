@@ -28,7 +28,7 @@ load_config() {
     # Set defaults
     PANTHRA_API_KEY="${PANTHRA_API_KEY:-}"
     PANTHRA_API_SECRET="${PANTHRA_API_SECRET:-}"
-    PANTHRA_BASE_URL="${PANTHRA_BASE_URL:-https://dev-api.panthra.ai/v1}"
+    PANTHRA_BASE_URL="${PANTHRA_BASE_URL:-https://api.panthra.ai/v1}"
     PANTHRA_DEBUG="${PANTHRA_DEBUG:-false}"
     PANTHRA_OUTPUT="${PANTHRA_OUTPUT:-json}"
 }
@@ -56,7 +56,7 @@ configure_credentials() {
     done
     
     # Base URL (fixed)
-    base_url="https://dev-api.panthra.ai/v1"
+    base_url="https://api.panthra.ai/v1"
     
     # Create ~/.panthra directory
     mkdir -p "$HOME/.panthra"
