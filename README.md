@@ -69,21 +69,51 @@ panthra --version
 which panthra
 ```
 
-## Configure Credentials
+## Configuration
+
+### Step 1: Get API Credentials
+
+1. Sign up at [Panthra Platform](https://panthra.ai)
+2. Navigate to API Settings in your dashboard
+3. Generate your API Key and Secret
+4. Save these credentials securely
+
+### Step 2: Configure the Client
+
+**Option 1: Interactive Configuration (Recommended)**
 
 ```bash
-# Interactive setup
+# Run interactive setup
 panthra configure
 
-# Verify configuration
-panthra config
-
-# Start trading
-panthra orders list
-panthra positions list
+# You will be prompted for:
+# - API Key
+# - API Secret
+# (Base URL is automatically set to https://api.panthra.ai/v1)
 ```
 
-Base URL is fixed to `https://api.panthra.ai/v1` (no user input needed).
+Credentials are stored in `~/.panthra/credentials` with secure permissions (600).
+
+**Option 2: Environment Variables**
+
+```bash
+export PANTHRA_API_KEY="your-api-key"
+export PANTHRA_API_SECRET="your-api-secret"
+export PANTHRA_BASE_URL="https://api.panthra.ai/v1"  # Optional, this is the default
+```
+
+### Step 3: Verify Configuration
+
+```bash
+# View current configuration (credentials are masked)
+panthra config
+
+# Test connection with a simple command
+panthra balances USD --output table
+
+# Or list your orders
+panthra orders list --output table
+```
 
 ## Usage
 

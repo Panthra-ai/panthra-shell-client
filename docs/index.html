@@ -28,16 +28,33 @@ which panthra</pre></div>
 </section>
 
 <section>
-  <h2>Configure</h2>
-  <p>Interactive or environment variables. Base URL is fixed to <code class="inline-code">https://api.panthra.ai/v1</code>.</p>
-  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre># Interactive
+  <h2>Configuration</h2>
+  <p><strong>Step 1:</strong> Get your API credentials from <a href="https://panthra.ai">Panthra Platform</a> → API Settings</p>
+  <p><strong>Step 2:</strong> Configure using interactive setup (recommended) or environment variables</p>
+  
+  <h3>Option 1: Interactive Configuration</h3>
+  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre># Run interactive setup
 panthra configure
+
+# You will be prompted for:
+# - API Key
+# - API Secret
+# (Base URL is automatically set to https://api.panthra.ai/v1)
+
+# Credentials stored in ~/.panthra/credentials with secure permissions</pre></div>
+  
+  <h3>Option 2: Environment Variables</h3>
+  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>export PANTHRA_API_KEY="your-api-key"
+export PANTHRA_API_SECRET="your-api-secret"
+export PANTHRA_BASE_URL="https://api.panthra.ai/v1"  # Optional</pre></div>
+  
+  <p><strong>Step 3:</strong> Verify your configuration</p>
+  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre># View current config (credentials masked)
 panthra config
 
-# Environment variables
-export PANTHRA_API_KEY="your-api-key"
-export PANTHRA_API_SECRET="your-api-secret"
-export PANTHRA_BASE_URL="https://api.panthra.ai/v1"</pre></div>
+# Test connection
+panthra balances USD --output table
+panthra orders list --output table</pre></div>
 </section>
 
 <section>
