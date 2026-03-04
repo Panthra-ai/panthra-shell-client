@@ -42,8 +42,8 @@ fi
 ln -s "$SCRIPT_DIR/bin/panthra" "$INSTALL_DIR/panthra"
 chmod +x "$INSTALL_DIR/panthra"
 
-echo -e "${GREEN}✓ Panthra CLI installed successfully!${NC}"
-echo -e "${GREEN}✓ Command available as: panthra${NC}"
+echo -e "${GREEN}Panthra CLI installed successfully!${NC}"
+echo -e "${GREEN}Command available as: panthra${NC}"
 echo ""
 echo "Try it out:"
 echo "  panthra --version"

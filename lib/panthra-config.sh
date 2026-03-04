@@ -76,8 +76,8 @@ EOF
     chmod 600 "$HOME/.panthra/credentials"
     
     echo ""
-    echo -e "${GREEN}✓ Credentials saved to ~/.panthra/credentials${NC}"
-    echo -e "${GREEN}✓ Configuration complete!${NC}"
+    echo -e "${GREEN}Credentials saved to ~/.panthra/credentials${NC}"
+    echo -e "${GREEN}Configuration complete!${NC}"
     echo ""
     echo "Test your configuration:"
     echo "  panthra config"

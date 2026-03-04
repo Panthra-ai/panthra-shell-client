@@ -2,7 +2,7 @@
 
 Professional shell client for the Panthra trading API.
 
-**📖 [Full Documentation](https://dev.panthra.ai/documentation/clients-panthra-shell-client)**
+[Full Documentation](https://dev.panthra.ai/documentation/clients-panthra-shell-client)
 
 ## Installation
 
@@ -189,6 +189,6 @@ MIT License - see LICENSE file for details.
 
 ---
 
-**📖 [Full Documentation & Tutorials](https://dev.panthra.ai/documentation/clients-panthra-shell-client)** |  
-**🌐 [Panthra Trading Platform](https://dev.panthra.ai)** |  
-**📧 [Support & Community](https://dev.panthra.ai/support)**
+[Full Documentation & Tutorials](https://dev.panthra.ai/documentation/clients-panthra-shell-client) |  
+[Panthra Trading Platform](https://dev.panthra.ai) |  
+[Support & Community](https://dev.panthra.ai/support)

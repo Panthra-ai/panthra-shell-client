@@ -60,8 +60,8 @@ export PATH="$INSTALL_DIR:$PATH"
 cd /
 rm -rf "$TEMP_DIR"
 
-echo -e "${GREEN}✓ Panthra CLI installed successfully!${NC}"
-echo -e "${GREEN}✓ Command available as: panthra${NC}"
+echo -e "${GREEN}Panthra CLI installed successfully!${NC}"
+echo -e "${GREEN}Command available as: panthra${NC}"
 echo ""
 echo "Restart your terminal and run:"
 echo "  panthra configure"
